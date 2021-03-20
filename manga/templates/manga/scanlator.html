@@ -1,0 +1,11 @@
+{% extends "manga/layout.html" %}
+
+{% block body %}
+<h1>{{ scanlator.name }}</h1>
+
+<ul>
+    {% for s in series %}
+    <li><a href="../series/{{ s.id }}">{{ s.title }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}

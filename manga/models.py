@@ -8,10 +8,11 @@ class Series(models.Model):
     def __str__(self):
         return self.title
 
+
 class Scanlator(models.Model):
     name = models.CharField(max_length=255)
-    url = models.CharField(max_length=255)
+    url = models.CharField(max_length=255, null=True)
     series = models.ManyToManyField(Series)
 
-    def __init__(self):
+    def __str__(self):
         return self.name

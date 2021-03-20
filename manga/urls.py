@@ -5,5 +5,6 @@ from . import views
 app_name = "manga"
 urlpatterns = [
     path('', views.index, name='index'),
-    path('series/<str:id>', views.series, name='series')
+    path('series/<str:id>', views.series, name='series'),
+    path('scanlator/<str:id>', views.scanlator, name='scanlator')
 ]
