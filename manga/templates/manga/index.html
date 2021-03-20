@@ -1,0 +1,11 @@
+{% extends "manga/layout.html" %}
+
+{% block body %}
+<h1>All manga</h1>
+
+<ul>
+    {% for m in manga %}
+    <li>{{ m.title }}</li>
+    {% endfor %}
+</ul>
+{% endblock %}
