@@ -1,0 +1,11 @@
+{% extends "manga/layout.html" %}
+
+{% block body %}
+<h1>New Scanlator</h1>
+
+<form action="{% url 'manga:add_scanlator' %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit">
+</form>
+{% endblock %}
