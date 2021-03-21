@@ -5,7 +5,13 @@
 
 <ul>
     {% for s in series %}
-    <li><a href="../series/{{ s.id }}">{{ s.title }}</a></li>
+    <li><a href="/series/{{ s.id }}">{{ s.title }}</a></li>
     {% endfor %}
 </ul>
+
+<form action="/scanlator/{{ scanlator.id }}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit">
+</form>
 {% endblock %}

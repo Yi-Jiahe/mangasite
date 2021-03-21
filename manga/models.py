@@ -11,8 +11,8 @@ class Series(models.Model):
 
 class Scanlator(models.Model):
     name = models.CharField(max_length=255)
-    url = models.CharField(max_length=255, null=True)
-    series = models.ManyToManyField(Series)
+    url = models.CharField(max_length=255, blank=True)
+    series = models.ManyToManyField(Series, blank=True)
 
     def __str__(self):
         return self.name

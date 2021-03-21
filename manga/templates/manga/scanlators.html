@@ -1,0 +1,11 @@
+{% extends "manga/layout.html" %}
+
+{% block body %}
+<h1>All scanlators</h1>
+
+<ul>
+    {% for scanlator in scanlators %}
+    <li><a href="/scanlator/{{ scanlator.id }}">{{ scanlator.name }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
