@@ -16,3 +16,9 @@ class Scanlator(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class ScanlatorSeriesURL(models.Model):
+    scanlator = models.OneToOneField(Scanlator, on_delete=models.CASCADE)
+    series = models.OneToOneField(Series, on_delete=models.CASCADE)
+    url = models.CharField(max_length=511)
