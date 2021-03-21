@@ -38,7 +38,7 @@ def scanlators(request):
 
 
 def series(request, id):
-    series = Series.objects.filter(id=id)[0]
+    series = Series.objects.get(id=id)
     return render(request, 'manga/series.html', {
         'series': series,
         'scanlators': series.scanlator_set.all()
@@ -46,11 +46,11 @@ def series(request, id):
 
 
 def scanlator(request, id):
-    scanlator = Scanlator.objects.filter(id=id)[0]
+    scanlator = Scanlator.objects.get(id=id)
     new_scanlator_series_URL = ScanlatorSeriesURL(scanlator=scanlator)
 
     if request.method == 'POST':
-        form = ScanlatorSeriesURLForm(request.POST, instance=new_scanlator_series_URL)
+        form = ScanlatorSeriesURLForm(request.POST)
 
         if form.is_valid():
             # Save ScanlatorSeriesURL
@@ -58,8 +58,17 @@ def scanlator(request, id):
             new_scanlator_series_URL.save()
             # Add series to scanlator
             scanlator.series.add(new_scanlator_series_URL.series)
+            scanlator.save()
 
-            return HttpResponseRedirect(reverse(f'manga:scanlator/{id}'))
+            new_scanlator_series_URL = ScanlatorSeriesURL(scanlator=scanlator)
+
+            return HttpResponseRedirect(reverse('manga:index'))
+        else:
+            return render(request, 'manga/scanlator.html', {
+                'scanlator': scanlator,
+                'series': scanlator.series.all(),
+                'form': form
+            })
 
     return render(request, 'manga/scanlator.html', {
         'scanlator': scanlator,
