@@ -24,20 +24,6 @@ class ScanlatorSeriesURLForm(forms.ModelForm):
         fields = '__all__'
 
 
-class NewScanlatorForm(forms.Form):
-    name = forms.CharField(label='name')
-    url = forms.CharField(label='url', required=False)
-
-
-class NewSeriesForm(forms.Form):
-    title = forms.CharField(label='title')
-
-
-class AddSeriesToScanlatorForm(forms.Form):
-    series = forms.ChoiceField(label='series', choices=[(s.id, s.title) for s in Series.objects.all()])
-    url = forms.CharField(label='url')
-
-
 # Create your views here.
 def index(request):
     return render(request, 'manga/index.html', {
@@ -98,7 +84,7 @@ def add_scanlator(request):
             })
 
     return render(request, 'manga/add_scanlator.html', {
-        'form': NewScanlatorForm()
+        'form': ScanlatorForm()
     })
 
 
@@ -118,5 +104,5 @@ def add_series(request):
             })
 
     return render(request, 'manga/add_series.html', {
-        'form': NewSeriesForm()
+        'form': SeriesForm()
     })
