@@ -4,13 +4,9 @@
 <h1>{{ series.title }}</h1>
 
 <ul>
-    {% for scanlator in scanlators %}
+    {% for scanlator, url in scanlators.items %}
     <li>
-        {% if scanlator.url %}
-            <a href={{ scanlator.url }}>{{ scanlator.name }}</a>
-        {% else %}
-            {{ scanlator.name }}
-        {% endif %}
+        <a href={{ url }}>{{ scanlator.name }}</a>
     </li>
     {% endfor %}
 </ul>

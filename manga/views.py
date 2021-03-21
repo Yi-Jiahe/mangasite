@@ -39,9 +39,16 @@ def scanlators(request):
 
 def series(request, id):
     series = Series.objects.get(id=id)
+
+    scanlator_links = ScanlatorSeriesURL.objects.filter(series=id)
+    scanlators = {
+        scanlator: scanlator_links.get(scanlator=scanlator.id).url
+        for scanlator in series.scanlator_set.all()
+    }
+
     return render(request, 'manga/series.html', {
         'series': series,
-        'scanlators': series.scanlator_set.all()
+        'scanlators': scanlators,
     })
 
 
